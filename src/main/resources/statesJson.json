@@ -1,0 +1,132 @@
+[
+	{
+		"name": "CloudMigrationWorkflow",
+		"target": "Discovery",
+		"event": "Start",
+		"action": "com.synectiks.state.machine.SSMAction",
+		"initial": true
+	},
+	{
+		"name": "Discovery",
+		"parent": "CloudMigrationWorkflow",
+		"target": "EvaluateExistingInfra",
+		"event": "DiscoverRequirements",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "EvaluateExistingInfra",
+		"parent": "Discovery",
+		"target": "CalculateMaturityIndex",
+		"event": "EvalInfra",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "CalculateMaturityIndex",
+		"parent": "Discovery",
+		"target": "PrepareGapReport",
+		"event": "CalcMaturityIndex",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "PrepareGapReport",
+		"parent": "Discovery",
+		"target": "Architecture",
+		"event": "GapReport",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "Architecture",
+		"parent": "CloudMigrationWorkflow",
+		"target": "NetworkSeurityArchitecture",
+		"event": "Architect",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "NetworkSeurityArchitecture",
+		"parent": "Architecture",
+		"target": "ServiceDecompositionArchitecture",
+		"event": "NetworkSecurity",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "ServiceDecompositionArchitecture",
+		"parent": "Architecture",
+		"target": "ValidateWithPOC",
+		"event": "ServiceDecompose",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "ValidateWithPOC",
+		"parent": "Architecture",
+		"target": "FinalArchitectureDoc",
+		"event": "WithPOC",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "FinalArchitectureDoc",
+		"parent": "Architecture",
+		"target": "Planning",
+		"event": "FinalArchitecture",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "Planning",
+		"parent": "CloudMigrationWorkflow",
+		"target": "Scoping",
+		"event": "Plan",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "Scoping",
+		"parent": "Planning",
+		"target": "RiskPlanning",
+		"event": "Scope",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "RiskPlanning",
+		"parent": "Planning",
+		"target": "ScrumPlanning",
+		"event": "RiskPlan",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "ScrumPlanning",
+		"parent": "Planning",
+		"target": "Execution",
+		"event": "ScrumPlan",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "Execution",
+		"parent": "CloudMigrationWorkflow",
+		"target": "InfraProvisioning",
+		"event": "Execute",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "InfraProvisioning",
+		"parent": "Execution",
+		"target": "ServiceProvisioning",
+		"event": "InfraProvsion",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "ServiceProvisioning",
+		"parent": "Execution",
+		"target": "OperationAutomation",
+		"event": "ServiceProvision",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "OperationAutomation",
+		"parent": "Execution",
+		"target": "End",
+		"event": "Automation",
+		"action": "com.synectiks.state.machine.actions.DiscoveryAction"
+	},
+	{
+		"name": "End",
+		"end": true
+	}
+]
